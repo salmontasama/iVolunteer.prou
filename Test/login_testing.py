@@ -4,8 +4,6 @@ from selenium.webdriver.common.by import By
 from time import sleep
 
 
-
-
 def init():
     driver = webdriver.Chrome('../Base/Driver/chromedriver.exe')
     driver.get("https://ivolunteer-app.herokuapp.com/login")
