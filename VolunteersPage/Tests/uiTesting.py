@@ -15,16 +15,16 @@ from Utilitis import constants as CO, driver as DR, func as FU
 def test_navbar_ui():
     driver = DR.initroot()
     driver.get(CO.login_page_url)
-    driver.implicitly_wait(20)
+    driver.implicitly_wait(30)
     email_field = driver.find_element(By.XPATH,CO.login_email_field_Xpath)
     password_field = driver.find_element(By.XPATH,CO.login_password_field_Xpath)
     send_button = driver.find_element(By.XPATH,CO.login_send_button_Xpath)
     fields = [email_field,password_field]
     for field,values in zip(fields,CO.user_details.values()):
-        time.sleep(1.5)
+        time.sleep(1)
         field.send_keys(values)
     send_button.click()
-    time.sleep(5)
+    time.sleep(0.5)
     obj = driver.switch_to.alert
     msg = obj.text
     print("Alert shows following message: " + msg)
@@ -32,12 +32,12 @@ def test_navbar_ui():
     print(" Clicked on the OK Button in the Alert Window")
     action = ActionChains(driver)
     donat_add_exit = driver.find_element(By.XPATH,CO.main_add_exit_btn)
-    action.move_to_element(donat_add_exit).click(donat_add_exit).perform()
-    volunteers_button = driver.find_element(By.XPATH,"//header/div[1]/div[1]/div[4]/button[4]")
-    volunteers_button.click()
+    try:
+        action.move_to_element(donat_add_exit).click(donat_add_exit).perform()
+    except:
+        FU.printing(f"The Add exit Button is out bouns not clickble!", "red")
     nav_con = driver.find_element(By.XPATH,CO.navbar_container)
     navbar_links = nav_con.find_elements(by=By.TAG_NAME,value="button")
-    time.sleep(4)
     for button,text in zip(navbar_links[1:],CO.navbar_buttons_text):
         assert button.text == text.upper()
         FU.printing(f"expected:{text.upper()} = actual:{button.text}","black")
@@ -50,16 +50,16 @@ def test_navbar_ui():
 def test_hero_ui():
     driver = DR.initroot()
     driver.get(CO.login_page_url)
-    driver.implicitly_wait(20)
+    driver.implicitly_wait(30)
     email_field = driver.find_element(By.XPATH,CO.login_email_field_Xpath)
     password_field = driver.find_element(By.XPATH,CO.login_password_field_Xpath)
     send_button = driver.find_element(By.XPATH,CO.login_send_button_Xpath)
     fields = [email_field,password_field]
     for field,values in zip(fields,CO.user_details.values()):
-        time.sleep(1.5)
+        time.sleep(1)
         field.send_keys(values)
     send_button.click()
-    time.sleep(5)
+    time.sleep(0.5)
     obj = driver.switch_to.alert
     msg = obj.text
     print("Alert shows following message: " + msg)
@@ -67,35 +67,40 @@ def test_hero_ui():
     print(" Clicked on the OK Button in the Alert Window")
     action = ActionChains(driver)
     donat_add_exit = driver.find_element(By.XPATH,CO.main_add_exit_btn)
-    action.move_to_element(donat_add_exit).click(donat_add_exit).perform()
+    try:
+        action.move_to_element(donat_add_exit).click(donat_add_exit).perform()
+    except:
+        FU.printing("The Add exit Button is out bouns not clickble!","red")
     volunteers_button = driver.find_element(By.XPATH,"//header/div[1]/div[1]/div[4]/button[4]")
-    volunteers_button.click()
+    try:
+        volunteers_button.click()
+    except:
+        FU.printing("The element can be clickd beacause the add interpted!","red")
     buttons_div = driver.find_element(By.XPATH,CO.volunteer_page_div)
     buttons = buttons_div.find_elements(By.TAG_NAME,"button")
     for i,button,header,paragraph in zip(range(1,13),buttons,CO.h1_text.keys(),CO.h1_text.values()):
-        time.sleep(2.5)
         button.click()
         y = driver.find_element(By.XPATH,f"//body[1]/div[2]/div[1]/div[1]/div[2]/div[1]/section[{i}]/div[2]/div[1]/h1[1]").text
         x = driver.find_element(By.XPATH,f"/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[1]/section[{i}]/div[2]/div[1]/p[1]").text
         assert y == header
         assert x == paragraph
-    time.sleep(2.5)
+    time.sleep(0.5)
     FU.success_finish("Hero UI")
 
 
 def test_footer_ui():
     driver = DR.initroot()
     driver.get(CO.login_page_url)
-    driver.implicitly_wait(20)
+    driver.implicitly_wait(30)
     email_field = driver.find_element(By.XPATH,CO.login_email_field_Xpath)
     password_field = driver.find_element(By.XPATH,CO.login_password_field_Xpath)
     send_button = driver.find_element(By.XPATH,CO.login_send_button_Xpath)
     fields = [email_field,password_field]
     for field,values in zip(fields,CO.user_details.values()):
-        time.sleep(1.5)
+        time.sleep(1)
         field.send_keys(values)
     send_button.click()
-    time.sleep(5)
+    time.sleep(0.5)
     obj = driver.switch_to.alert
     msg = obj.text
     print("Alert shows following message: " + msg)
@@ -103,12 +108,15 @@ def test_footer_ui():
     print(" Clicked on the OK Button in the Alert Window")
     action = ActionChains(driver)
     donat_add_exit = driver.find_element(By.XPATH,CO.main_add_exit_btn)
-    action.move_to_element(donat_add_exit).click(donat_add_exit).perform()
-    volunteers_button = driver.find_element(By.XPATH,"//header/div[1]/div[1]/div[4]/button[4]")
-    volunteers_button.click()
-    time.sleep(1.5)
+    try:
+        action.move_to_element(donat_add_exit).click(donat_add_exit).perform()
+    except:
+        FU.printing("The Add exit Button is out bouns not clickble!","red")
     footer_btn = driver.find_element(By.CLASS_NAME,CO.footer_btn)
-    footer_btn.click()
+    try:
+        footer_btn.click()
+    except:
+        FU.printing("The element can be clickd beacause the add interpted!","red")
     con_footer_links_social = driver.find_element(By.XPATH, CO.social_footer_links)
     con_footer_links_nav = driver.find_element(By.XPATH, CO.footer_nav_links)
     social_footer = con_footer_links_social.find_elements(By.TAG_NAME,"a")
@@ -129,3 +137,6 @@ def test_ui_volunteer_page():
     test_navbar_ui()
     test_hero_ui()
     test_footer_ui()
+    FU.printing("All UI Tests in Volunteer Page are complete!", "blue")
+
+test_ui_volunteer_page()
