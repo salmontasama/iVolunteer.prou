@@ -46,7 +46,7 @@ def test_navbar_ui():
 def test_hero_ui():
     driver = DR.initroot()
     driver.get(CO.login_page_url)
-    driver.implicitly_wait(20)
+    driver.implicitly_wait(25)
     email_field = driver.find_element(By.XPATH,CO.login_email_field_Xpath)
     password_field = driver.find_element(By.XPATH,CO.login_password_field_Xpath)
     send_button = driver.find_element(By.XPATH,CO.login_send_button_Xpath)
@@ -67,7 +67,7 @@ def test_hero_ui():
     time.sleep(1.5)
     main_contant = driver.find_element(By.XPATH,CO.main_contant_hero_home).text
     assert main_contant == CO.top_contant_hero_home
-    arrow_right = driver.find_element(By.XPATH,"//body/div[@id='root']/div[1]/div[1]/div[2]/section[1]/*[1]")
+    arrow_right = driver.find_element(By.XPATH,CO.arrow_right_hero_home_page)
     img1 = driver.find_element(By.XPATH,CO.imgs[0])
     img2 = driver.find_element(By.XPATH,CO.imgs[1])
     img3 = driver.find_element(By.XPATH,CO.imgs[2])

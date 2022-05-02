@@ -74,3 +74,6 @@ right_top_col_hero_text = "Doing good\nhas never been easier\nVolunteer as a tea
 
 
 left_buttom_col_hero_text = "The change is in your\nhands\nContribute to the missions you love. Make a difference\nwith your team or on your own, remotely or on-site.\nCLICK TO DONATE"
+
+
+arrow_right_hero_home_page = "//body/div[@id='root']/div[1]/div[1]/div[2]/section[1]/*[1]"

@@ -89,7 +89,7 @@ def test_footer_btn():
     obj.accept()
     print(" Clicked on the OK Button in the Alert Window")
     action = ActionChains(driver)
-    donat_add_exit = driver.find_element(By.XPATH,"//body/div[@id='root']/div[1]/div[1]/div[2]/div[5]/div[1]/*[1]")
+    donat_add_exit = driver.find_element(By.XPATH,CO.main_add_exit_btn)
     action.move_to_element(donat_add_exit).click(donat_add_exit).perform()
     volunteers_button = driver.find_element(By.XPATH,"//header/div[1]/div[1]/div[4]/button[4]")
     volunteers_button.click()
