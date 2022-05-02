@@ -197,4 +197,3 @@ def test_func_home_page():
     test_footer_btn()
     FU.printing("All Functionalty Test in Home Page are complete!","blue")
 
-test_func_home_page()
