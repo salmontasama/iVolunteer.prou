@@ -1,7 +1,7 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from time import sleep
+import Test.Constance.constanc as CO
 
 
 def init():
@@ -70,8 +70,10 @@ def test_login_with_special_Characters_email_and_noll_posswerd():
 #Check with a correct email and a noll_posswerd
 def test_login_with_proper_email_and_noll_posswerd():
     driver = init()
-    driver.find_element(By.XPATH,"//input[@id='mui-1']").send_keys("natanshete1@gmail.com")
-    driver.find_element(By.XPATH, "//input[@id='mui-2']").send_keys("")
+    email_field = driver.find_element(By.XPATH, CO.email_field_path)
+    password_field = driver.find_element(By.XPATH, "//input[@id='mui-2']")
+    email_field.send_keys(CO.valid_email)
+    password_field.send_keys("")
     driver.find_element(By.XPATH, "//body/div[@id='root']/div[1]/div[1]/div[1]/div[1]/div[1]/span[1]").click()
     value = driver.find_element(By.XPATH,"//input[@id='mui-1']").get_attribute("innerText")
     sleep(3)
@@ -79,10 +81,13 @@ def test_login_with_proper_email_and_noll_posswerd():
     assert value == ""
 
 
+
 def test_login_with_proper_email_and_invalid_posswerd():
     driver = init()
-    driver.find_element(By.XPATH,"//input[@id='mui-1']").send_keys("natanshete1@gmail.com")
-    driver.find_element(By.XPATH, "//input[@id='mui-2']").send_keys("שלום")
+    email_field = driver.find_element(By.XPATH,CO.email_field_path)
+    password_field = driver.find_element(By.XPATH, "//input[@id='mui-2']")
+    email_field.send_keys(CO.valid_email)
+    password_field.send_keys("שלום")
     driver.find_element(By.XPATH, "//body/div[@id='root']/div[1]/div[1]/div[1]/div[1]/div[1]/span[1]").click()
     value = driver.find_element(By.XPATH,"//input[@id='mui-1']").get_attribute("innerText")
     sleep(3)
@@ -92,11 +97,14 @@ def test_login_with_proper_email_and_invalid_posswerd():
 
 def test_login_with_proper_email_and_special_Characters_posswerd():
     driver = init()
-    driver.find_element(By.XPATH,"//input[@id='mui-1']").send_keys("natanshete1@gmail.com")
-    driver.find_element(By.XPATH, "//input[@id='mui-2']").send_keys("@@@@@")
+    email_field = driver.find_element(By.XPATH, CO.email_field_path)
+    password_field = driver.find_element(By.XPATH, "//input[@id='mui-2']")
+    email_field.send_keys(CO.valid_email)
+    password_field.send_keys("@@@@@")
     driver.find_element(By.XPATH, "//body/div[@id='root']/div[1]/div[1]/div[1]/div[1]/div[1]/span[1]").click()
     value = driver.find_element(By.XPATH,"//input[@id='mui-1']").get_attribute("innerText")
     sleep(3)
     print(value)
     assert value == ""
+
 
