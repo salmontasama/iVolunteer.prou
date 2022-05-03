@@ -1,11 +1,14 @@
 from colorama import Fore
 from colorama import Style
 
+
 def success_finish(x):
-    print(Fore.LIGHTGREEN_EX+f"{x} Test Finish!"+Style.RESET_ALL)
-def printing(x,y):
+    print(Fore.LIGHTGREEN_EX + f"{x} Test Finish!" + Style.RESET_ALL)
+
+
+def printing(x, y):
     if y == "green":
-        print(Fore.LIGHTGREEN_EX + x +Style.RESET_ALL)
+        print(Fore.LIGHTGREEN_EX + x + Style.RESET_ALL)
     elif y == "blue":
         print(Fore.LIGHTBLUE_EX + x + Style.RESET_ALL)
     elif y == "yellow":
@@ -14,4 +17,3 @@ def printing(x,y):
         print(Fore.LIGHTBLACK_EX + x + Style.RESET_ALL)
     elif y == "red":
         print(Fore.LIGHTRED_EX + x + Style.RESET_ALL)
-
