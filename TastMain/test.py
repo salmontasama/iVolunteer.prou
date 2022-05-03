@@ -1,20 +1,21 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
 from time import sleep
-from selenium.webdriver.support.select import Select
-from selenium.webdriver.support import expected_conditions as EC, wait
-from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support.select import Select
+# from selenium.webdriver.support import expected_conditions as EC, wait
+# from selenium.webdriver.support.ui import WebDriverWait
 
 
 def init():
     driver = webdriver.Chrome("C:/Users/IMOE001/PycharmProjects/pythonProject/pythonProject/Driver/chromedriver.exe")
     driver.get('https://ivolunteer-app.herokuapp.com/')
     driver.maximize_window()
-    location = "file://<Specify Path to Simple_Alert.HTML>"
     return driver
 
 
+
 def test_yosef_link():
+
     driver = init()
     driver.find_element(By.XPATH, "//div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]").click()
     sleep(4)
